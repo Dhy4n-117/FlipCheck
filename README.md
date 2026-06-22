@@ -25,7 +25,6 @@ flipcheck/
 - **Python 3.10+**
 - **Node.js 18+** and npm
 - **Gemini API key** — free at [Google AI Studio](https://aistudio.google.com/)
-- **eBay developer account** — free at [eBay Developer Portal](https://developer.ebay.com/)
 
 ## Environment Setup
 
@@ -40,8 +39,6 @@ Edit `.env` with your actual keys:
 
 ```
 GEMINI_API_KEY=your_key_here
-EBAY_APP_ID=your_app_id_here
-EBAY_CERT_ID=your_cert_id_here
 ALLOWED_ORIGINS=http://localhost:5173
 ```
 
