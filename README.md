@@ -10,9 +10,8 @@ flipcheck/
 │   ├── main.py       # API routes, CORS, validation
 │   ├── models.py     # Pydantic schemas
 │   └── services/
-│       ├── gemini.py  # Gemini 2.0 Flash vision
-│       ├── ebay.py    # eBay Browse API + OAuth
-│       └── pricing.py # Price stats + flip logic
+│       ├── gemini.py  # Gemini vision, pricing & flip logic
+│       └── pricing.py # Data formatting & fallbacks
 │
 └── frontend/         # React + Vite + Tailwind CSS
     └── src/
