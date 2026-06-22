@@ -137,7 +137,6 @@ Everything runs on free tiers:
 | Service | Free Tier |
 |---------|-----------|
 | Gemini 2.0 Flash | 1,500 req/day |
-| eBay Browse API | 5,000 calls/day |
 | Vercel | Hobby tier |
 | Render | Free tier (cold starts) |
 
