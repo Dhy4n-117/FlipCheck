@@ -135,7 +135,7 @@ async def identify_and_price_item(
             [prompt, image_part],
             generation_config=genai.types.GenerationConfig(
                 temperature=0.1,
-                max_output_tokens=2048,
+                max_output_tokens=4096,
             ),
         )
     except Exception as exc:
