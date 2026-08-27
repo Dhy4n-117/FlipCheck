@@ -99,10 +99,10 @@ curl -X POST http://localhost:8000/api/analyze \
     "confidence": 0.87
   },
   "pricing": {
-    "floor": 18.00,
-    "average": 32.00,
-    "ceiling": 55.00,
-    "sample_size": 34
+    "resale_low": 45.0,
+    "resale_high": 75.0,
+    "average": 60.0,
+    "currency": "USD"
   },
   "flip_insight": {
     "verdict": "strong_flip",
