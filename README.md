@@ -105,9 +105,16 @@ curl -X POST http://localhost:8000/api/analyze \
     "currency": "USD"
   },
   "flip_insight": {
-    "verdict": "strong_flip",
-    "reason": "Average resale $32 is 4.0x the typical thrift cost of $8.",
-    "suggested_platform": "eBay"
+    "verdict": "BUY",
+    "reason": "Average resale $60 is 7.5x the asking price. Strong margin.",
+    "suggested_offer_low": 6.0,
+    "suggested_offer_high": 8.0,
+    "max_buy_price": 25.0,
+    "risk_level": "Low",
+    "risk_reason": "Common item with consistent demand",
+    "profit_low": 37.0,
+    "profit_high": 67.0,
+    "best_platform": "eBay"
   }
 }
 ```
