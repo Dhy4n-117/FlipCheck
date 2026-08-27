@@ -93,7 +93,9 @@ curl -X POST http://localhost:8000/api/analyze \
     "brand": "Nike",
     "model": "Air Force 1 '07",
     "colorway": "White/White",
+    "estimated_year_range": "2020-2023",
     "condition": "good",
+    "condition_notes": "Minor creasing",
     "confidence": 0.87
   },
   "pricing": {
