@@ -87,7 +87,8 @@ Upload an image to get a full price analysis:
 
 ```bash
 curl -X POST http://localhost:8000/api/analyze \
-  -F "image=@photo.jpg"
+  -F "image=@photo.jpg" \
+  -F "asking_price=8.00"
 ```
 
 **Response:**
