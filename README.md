@@ -1,6 +1,6 @@
 # FlipCheck ⚡
 
-**AI-powered thrift store price intelligence.** Upload a photo of any secondhand item and get instant resale market pricing.
+**AI-powered thrift store price intelligence.** Upload a photo of any secondhand item and get an instant Profit Report with BUY/OFFER/SKIP guidance.
 
 ## Architecture
 
