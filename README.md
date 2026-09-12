@@ -2,6 +2,12 @@
 
 **AI-powered thrift store price intelligence.** Upload a photo of any secondhand item and get an instant Profit Report with BUY/OFFER/SKIP guidance.
 
+## Features
+- **Instant Profit Reports:** Get resale estimates, gross profit, and suggested offer prices.
+- **BUY / OFFER / SKIP Guidance:** Actionable verdicts based on real market data.
+- **Risk Assessment:** Automatic detection of high-risk items or saturated markets.
+- **100% Free:** Powered entirely by the free tier of the Gemini API.
+
 ## Architecture
 
 ```
