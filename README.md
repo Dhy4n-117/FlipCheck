@@ -83,7 +83,7 @@ The app will be available at `http://localhost:5173`.
 
 ### `POST /api/analyze`
 
-Upload an image to get a full price analysis:
+Upload an image (and optional asking price) to get a full Profit Report analysis:
 
 ```bash
 curl -X POST http://localhost:8000/api/analyze \
