@@ -145,7 +145,7 @@ Everything runs on free tiers:
 
 | Service | Free Tier |
 |---------|-----------|
-| Gemini 2.0 Flash | 1,500 req/day |
+| Gemini 2.5 Flash | 1,500 req/day |
 | Vercel | Hobby tier |
 | Render | Free tier (cold starts) |
 
