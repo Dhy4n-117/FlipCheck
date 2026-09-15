@@ -137,3 +137,5 @@ async def analyze(
         flip_insight=flip_insight,
         asking_price=asking_price,
     )
+
+# end of routes
