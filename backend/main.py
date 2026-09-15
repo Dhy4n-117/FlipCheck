@@ -62,7 +62,7 @@ async def global_exception_handler(request, exc):
 
 
 # ---------- Health check ----------
-@app.get("/health")
+@app.get('/health', tags=['monitoring'])
 async def health():
     """Health check endpoint."""
     return {"status": "ok", "service": "flipcheck-api"}
