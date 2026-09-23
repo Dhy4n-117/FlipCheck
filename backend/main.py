@@ -5,8 +5,9 @@ from __future__ import annotations
 import os
 from contextlib import asynccontextmanager
 
+import logging
 from dotenv import load_dotenv
-from fastapi import FastAPI, File, Form, HTTPException, UploadFile
+from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
@@ -16,6 +17,13 @@ from services.pricing import build_flip_insight, build_pricing
 
 # Load .env file for local development
 load_dotenv()
+
+# ---------- Logging ----------
+logging.basicConfig(
+    level=os.getenv("LOG_LEVEL", "INFO").upper(),
+    format="%(asctime)s | %(levelname)-8s | %(message)s",
+)
+logger = logging.getLogger("flipcheck")
 
 # ---------- Constants ----------
 MAX_IMAGE_SIZE = 10 * 1024 * 1024  # 10 MB
@@ -52,6 +60,7 @@ app.add_middleware(
 @app.exception_handler(Exception)
 async def global_exception_handler(request, exc):
     """Ensure all unhandled exceptions return structured JSON."""
+    logger.exception("Unhandled error on %s %s", request.method, request.url.path)
     return JSONResponse(
         status_code=500,
         content=ErrorResponse(
