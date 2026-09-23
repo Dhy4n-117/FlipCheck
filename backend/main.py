@@ -73,8 +73,12 @@ async def global_exception_handler(request, exc):
 # ---------- Health check ----------
 @app.get('/health', tags=['monitoring'])
 async def health():
-    """Health check endpoint."""
-    return {"status": "ok", "service": "flipcheck-api"}
+    """Health check endpoint with service metadata."""
+    return {
+        "status": "ok",
+        "service": "flipcheck-api",
+        "version": app.version,
+    }
 
 
 # ---------- Main analysis endpoint ----------
@@ -147,4 +151,3 @@ async def analyze(
         asking_price=asking_price,
     )
 
-# end of routes

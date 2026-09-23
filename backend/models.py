@@ -61,4 +61,3 @@ class ErrorResponse(BaseModel):
     error: str
     message: str
 
-# EOF
