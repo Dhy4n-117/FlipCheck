@@ -2,10 +2,14 @@
 
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 
 import google.generativeai as genai
+
+# Maximum seconds to wait for a Gemini response before giving up
+GEMINI_TIMEOUT = int(os.getenv("GEMINI_TIMEOUT", "30"))
 
 
 def _build_prompt(asking_price: float | None = None) -> str:
@@ -131,13 +135,18 @@ async def identify_and_price_item(
     prompt = _build_prompt(asking_price)
 
     try:
-        response = await model.generate_content_async(
-            [prompt, image_part],
-            generation_config=genai.types.GenerationConfig(
-                temperature=0.1,
-                max_output_tokens=4096,
+        response = await asyncio.wait_for(
+            model.generate_content_async(
+                [prompt, image_part],
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.1,
+                    max_output_tokens=4096,
+                ),
             ),
+            timeout=GEMINI_TIMEOUT,
         )
+    except asyncio.TimeoutError:
+        raise ValueError(f"Gemini API timed out after {GEMINI_TIMEOUT}s")
     except Exception as exc:
         raise ValueError(f"Gemini API call failed: {exc}") from exc
 
