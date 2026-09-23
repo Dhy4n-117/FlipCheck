@@ -50,43 +50,52 @@ export function useAnalyze() {
     setState(STATES.ANALYZING);
     setError(null);
 
-    try {
-      const formData = new FormData();
-      formData.append("image", file);
+    const formData = new FormData();
+    formData.append("image", file);
 
-      if (askingPrice.trim() !== "") {
-        const parsed = parseFloat(askingPrice);
-        if (!isNaN(parsed) && parsed > 0) {
-          formData.append("asking_price", parsed);
+    if (askingPrice.trim() !== "") {
+      const parsed = parseFloat(askingPrice);
+      if (!isNaN(parsed) && parsed > 0) {
+        formData.append("asking_price", parsed);
+      }
+    }
+
+    const MAX_RETRIES = 2;
+    for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+      try {
+        const res = await fetch(`${API_URL}/api/analyze`, {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          setError(data.message || data.error || "Analysis failed. Please try again.");
+          setState(STATES.ERROR);
+          return;
         }
-      }
 
-      const res = await fetch(`${API_URL}/api/analyze`, {
-        method: "POST",
-        body: formData,
-      });
+        if (data.error && !data.item) {
+          setError(data.message || data.error);
+          setState(STATES.ERROR);
+          return;
+        }
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.message || data.error || "Analysis failed. Please try again.");
-        setState(STATES.ERROR);
+        setResult(data);
+        setState(STATES.RESULT);
         return;
-      }
-
-      if (data.error && !data.item) {
-        setError(data.message || data.error);
+      } catch (err) {
+        // Retry once on network failure before giving up
+        if (attempt < MAX_RETRIES - 1) {
+          await new Promise((r) => setTimeout(r, 1000 * (attempt + 1)));
+          continue;
+        }
+        setError(
+          "Unable to connect to the analysis server. Make sure the backend is running."
+        );
         setState(STATES.ERROR);
-        return;
       }
-
-      setResult(data);
-      setState(STATES.RESULT);
-    } catch (err) {
-      setError(
-        "Unable to connect to the analysis server. Make sure the backend is running."
-      );
-      setState(STATES.ERROR);
     }
   }, [file, askingPrice]);
 
